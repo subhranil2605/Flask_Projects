@@ -25,9 +25,13 @@ def index():
 def add():
     # add new item
     title = request.form.get("title")
-    new_todo = Todo(title=title, complete=False)
-    db.session.add(new_todo)
-    db.session.commit()
+    if title:
+        print(title)
+        new_todo = Todo(title=title, complete=False)
+        db.session.add(new_todo)
+        db.session.commit()
+    else:
+        print("Please add a title")
     return redirect(url_for("index"))
 
 
